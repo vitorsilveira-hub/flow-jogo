@@ -3,33 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Flow: Sem Filtro - PC MASTER</title>
+    <title>Flow: Sem Filtro - PC ALARM EDITION</title>
     <style>
         :root { --bg: #000; --red: #ff0000; --wine: #4a0000; --gold: #D4AF37; }
         body { background: var(--bg); color: #fff; font-family: 'Segoe UI', sans-serif; margin: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; text-align: center; overflow: hidden; }
-        
-        /* AJUSTE PARA PC: Removi o limite de 450px */
         .screen { display: none; width: 90%; max-width: 1200px; flex-direction: column; gap: 20px; }
         .active { display: flex; }
-        
-        h1 { color: var(--red); font-size: 3rem; letter-spacing: 5px; margin: 0; text-shadow: 0 0 15px var(--red); }
-        h2 { color: var(--gold); font-size: 1.8rem; margin: 0; }
-        p { font-size: 2.2rem; font-weight: bold; line-height: 1.2; margin: 20px 0; color: #eee; }
-        
+        h1 { color: var(--red); font-size: 3.5rem; letter-spacing: 5px; margin: 0; text-shadow: 0 0 20px var(--red); }
+        h2 { color: var(--gold); font-size: 2rem; margin: 0; }
+        p { font-size: 2.5rem; font-weight: bold; line-height: 1.2; margin: 20px 0; }
         .btn { background: var(--wine); color: #fff; border: 1px solid var(--red); padding: 25px; font-size: 1.5rem; border-radius: 8px; cursor: pointer; text-transform: uppercase; font-weight: bold; transition: 0.3s; }
-        .btn:hover { background: var(--red); box-shadow: 0 0 20px var(--red); }
-        
-        .timer { font-size: 8rem; color: var(--red); margin: 10px 0; font-family: monospace; text-shadow: 0 0 20px var(--red); }
-        
-        .rating-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 15px; width: 100%; max-width: 800px; align-self: center; }
-        .btn-note { background: #1a1a1a; border: 1px solid var(--gold); color: var(--gold); padding: 20px; font-size: 2rem; border-radius: 10px; }
-        
-        .status { font-size: 1.2rem; color: #666; text-transform: uppercase; display: flex; justify-content: space-between; width: 100%; padding: 20px; position: absolute; top: 0; }
+        .btn:hover { background: var(--red); box-shadow: 0 0 25px var(--red); }
+        .timer { font-size: 10rem; color: var(--red); margin: 10px 0; font-family: monospace; text-shadow: 0 0 30px var(--red); }
+        .rating-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 15px; width: 100%; max-width: 900px; align-self: center; }
+        .btn-note { background: #1a1a1a; border: 1px solid var(--gold); color: var(--gold); padding: 25px; font-size: 2.5rem; border-radius: 10px; }
+        .status { font-size: 1.2rem; color: #666; text-transform: uppercase; display: flex; justify-content: space-between; width: 100%; padding: 30px; position: absolute; top: 0; box-sizing: border-box; }
         .btn-top { background: transparent; border: 1px solid #444; color: #888; padding: 10px 15px; font-size: 1rem; border-radius: 5px; cursor: pointer; margin-left: 10px; }
-        
-        .name-input { background: #111; border: 2px solid var(--gold); color: #fff; padding: 15px; font-size: 1.5rem; width: 300px; text-align: center; border-radius: 10px; }
-        input[type="number"], select { background: #222; border: 1px solid var(--red); color: #fff; padding: 10px; font-size: 1.5rem; text-align: center; }
-        .row { display: flex; justify-content: space-between; align-items: center; background: #111; padding: 20px; border-radius: 10px; width: 100%; box-sizing: border-box; }
+        .name-input { background: #111; border: 2px solid var(--gold); color: #fff; padding: 15px; font-size: 1.8rem; width: 350px; text-align: center; border-radius: 10px; }
+        input[type="number"], select { background: #222; border: 1px solid var(--red); color: #fff; padding: 10px; font-size: 1.8rem; text-align: center; border-radius: 5px; }
+        .row { display: flex; justify-content: space-between; align-items: center; background: #111; padding: 25px; border-radius: 10px; width: 100%; box-sizing: border-box; }
     </style>
 </head>
 <body>
@@ -37,20 +29,20 @@
     <div class="status">
         <div id="status-left"><span id="l-lv">Nível 1</span> | <span id="l-tr">Vez de...</span></div>
         <div style="display:flex;">
-            <button class="btn-top" onclick="toggleFullScreen()">Tela Cheia (F11)</button>
-            <button class="btn-top" onclick="skipLevel()">Pular Nível</button>
-            <button class="btn-top" onclick="exitToHome()">Sair</button>
+            <button class="btn-top" onclick="toggleFullScreen()">TELA CHEIA (F)</button>
+            <button class="btn-top" onclick="skipLevel()">PULAR NÍVEL (L)</button>
+            <button class="btn-top" onclick="exitToHome()">SAIR (ESC)</button>
         </div>
     </div>
 
     <div id="s-start" class="screen active">
         <h1>FLOW: SEM FILTRO</h1>
-        <div style="display:flex; gap:20px; justify-content:center; margin: 20px 0;">
+        <div style="display:flex; gap:30px; justify-content:center; margin: 30px 0;">
             <input type="text" id="p1" class="name-input" placeholder="Nome Dele">
             <input type="text" id="p2" class="name-input" placeholder="Nome Dela">
         </div>
         <button class="btn" onclick="show('s-settings')">Ajustar Tempo</button>
-        <button class="btn" style="margin-top:10px; border-color: var(--gold);" onclick="start()">Entrar no Jogo</button>
+        <button class="btn" style="margin-top:15px; border-color: var(--gold);" onclick="start()">ENTRAR NO JOGO (ENTER)</button>
     </div>
 
     <div id="s-settings" class="screen">
@@ -58,71 +50,85 @@
         <div class="row"><label>Mínimo (seg):</label><input type="number" id="c-min" value="120"></div>
         <div class="row"><label>Máximo (seg):</label><input type="number" id="c-max" value="300"></div>
         <div class="row"><label>Bônus por Nível (seg):</label><select id="c-inc"><option value="0">Off</option><option value="30" selected>+30s</option><option value="60">+60s</option></select></div>
-        <button class="btn" onclick="saveSettings()">Salvar Configurações</button>
+        <button class="btn" onclick="saveSettings()">Salvar (ENTER)</button>
     </div>
 
     <div id="s-game" class="screen">
-        <h2 id="l-who" style="color:var(--gold); font-size: 2.5rem;">Ação</h2>
+        <h2 id="l-who" style="color:var(--gold); font-size: 3rem;">Ação</h2>
         <p id="l-txt">Sorteando...</p>
         <div class="timer" id="l-tm">00:00</div>
-        <button id="b-run" class="btn" onclick="runTimer()">Começar Ato</button>
-        <button id="b-rate" class="btn" style="display:none;" onclick="showRate()">Avaliar Agora</button>
-        <button id="b-skip" class="btn" style="background:#333; border:none; margin-top:20px; font-size: 1rem;" onclick="skipAction()">Pular esta Ação</button>
+        <button id="b-run" class="btn" onclick="runTimer()">COMEÇAR ATO (ESPAÇO)</button>
+        <button id="b-rate" class="btn" style="display:none;" onclick="showRate()">AVALIAR (ENTER)</button>
+        <button id="b-skip" class="btn" style="background:#222; border:none; margin-top:20px; font-size: 1.2rem;" onclick="skipAction()">Pular Ação (P)</button>
     </div>
 
     <div id="s-rate" class="screen">
-        <h2 id="l-rate-msg" style="font-size: 2rem;">Nota:</h2>
+        <h2 id="l-rate-msg" style="font-size: 2.5rem;">Nota:</h2>
         <div class="rating-grid" id="notes"></div>
-        <p style="font-size:1.5rem">Média do Nível: <span id="l-av">0</span></p>
+        <p style="font-size:1.5rem; color:#666;">Pressione 1-9 ou 0</p>
     </div>
 
     <div id="s-up" class="screen">
-        <h1 style="font-size:6rem;">🫦</h1>
-        <h1 style="font-size:3rem;">NÍVEL SUBIU!</h1>
-        <p>Prepare-se para o próximo passo...</p>
-        <button class="btn" onclick="nextLevel()">Avançar</button>
+        <h1 style="font-size:8rem;">🫦</h1>
+        <h1>NÍVEL SUBIU!</h1>
+        <p>A coisa ficou séria. Avançando...</p>
+        <button class="btn" onclick="nextLevel()">PRÓXIMO NÍVEL (ENTER)</button>
     </div>
 
     <script>
-        // O Banco de Dados e a Lógica permanecem os mesmos dos scripts anteriores
-        // Adicionei apenas a função de Tela Cheia
-        function toggleFullScreen() {
-            if (!document.fullscreenElement) {
-                document.documentElement.requestFullscreen();
-            } else {
-                if (document.exitFullscreen) { document.exitFullscreen(); }
-            }
-        }
-
         const db = {
-            1: { ele: ["Encare ela com vontade de devorar.", "Sussurra a putaria mais suja no ouvido dela.", "Cheira o pescoço dela e dê uma mordida.", "Diz onde você quer meter a boca primeiro.", "Segura a nuca dela e beije o pescoço.", "Diz o quanto o rabo dela te excita.", "Passa a mão no rosto dela com desejo.", "Morda o lábio dela com força.", "Diga que o cheiro dela te deixa louco.", "Dê um beijo de língua bem molhado e agressivo.", "Sussurre o que vai fazer com ela mais tarde.", "Lamba o lábio dela e olhe pro rabo.", "Sussurre: 'você é minha puta hoje'.", "Aperte o pescoço dela de leve e beije.", "Cheire o cangote dela com tesão."],
-                 ela: ["Diz no ouvido dele o que você quer sentir lá dentro.", "Diz o quanto o pau dele te deixa molhada.", "Morda o lábio dele e olhe fixo, provocando.", "Puxe o cabelo dele e diga que ele é seu.", "Dê um beijo com muita língua e barulho.", "Diz que você não vê a hora de ser fodida.", "Arranhe o pescoço dele e morda a orelha.", "Puxe o lábio dele com o dente.", "Diga que adora o jeito que ele te pega.", "Cheire o pescoço dele e dê uma lambida.", "Diga que está ficando encharcada.", "Morda o ombro dele olhando pro pau.", "Sussurre: 'faz o que quiser comigo'.", "Dê um tapa leve no rosto dele e beije.", "Lamba a orelha dele e gema baixo."] },
-            2: { ele: ["Aperta a bunda dela por cima da roupa com vontade.", "Morda o pescoço dela e desça até o colo.", "Massagem bruta nos ombros, apertando bem.", "Mão por dentro da blusa dela, sentindo o calor.", "Dá um tapa leve na bunda dela e puxa pra perto.", "Lamba a orelha dela e dê um sopro quente.", "Passe a mão no cabelo dela e puxe.", "Roça seu pau nela por cima da calça.", "Mão na nuca e beijo no pescoço intenso.", "Dê uma mordida no ombro dela.", "Aperte a bunda dela por cima da roupa.", "Morda o pescoço e desça pro colo.", "Aperte os peitos dela por cima da blusa.", "Mão por dentro da blusa, sem tirar.", "Segura a cintura dela com muita força."],
-                 ela: ["Enfie as unhas nas costas dele.", "Beijo na mandíbula descendo pro pescoço.", "Segura o pau dele por cima da calça.", "Esfregue sua buceta na perna dele.", "Língua no peito dele por dentro da camisa.", "Morda o peito dele.", "Brinca com o zíper da calça dele.", "Chupe o lóbulo da orelha dele.", "Passe a mão firme na coxa dele.", "Beijo molhado perto do ouvido.", "Enfie as unhas nas costas dele com força.", "Beijo na mandíbula descendo pro pescoço.", "Segura o pau dele por cima da calça.", "Esfregue sua buceta na perna dele.", "Puxe ele pra você pela nuca."] },
-            3: { ele: ["Arranque a blusa/peça de cima dela.", "Tire os calçados dela e jogue longe.", "Lamba a pele que você descobriu agora.", "Tire sua camisa e encoste o peito nela.", "Chupe o ombro dela agora nu.", "Tire o seu calçado e fique à vontade.", "Dê um chupão na clavícula dela.", "Beije a nuca dela agora sem roupa.", "Diga: 'eu vou te deixar pelada agora'.", "Lamba a clavícula dela.", "Tire a peça de cima dela com os dentes.", "Tire os calçados dela e jogue longe.", "Lamba a pele das costas dela.", "Passe seu mamilo no dela.", "Morda a pele das costas dela."],
-                 ela: ["Arranque a camisa dele.", "Ajude ele a tirar a calça e beije o que aparecer.", "Beije e morda o mamilo dele.", "Tire suas meias com os dentes.", "Desabotoa ele e dê uma olhada no volume.", "Passe os seios no braço dele.", "Tire sua peça de cima e esfregue nele.", "Lamba o pescoço dele com vontade.", "Morda o ombro dele enquanto desce a mão.", "Puxe ele pra você pelo cinto.", "Arranque a camisa dele agora.", "Tire os calçados dele.", "Beije o peito dele sem roupa.", "Tire as meias dele com os dentes.", "Lamba o pescoço dele direto na pele."] },
-            4: { ele: ["Beijo de língua profundo e agressivo.", "Morda o lábio inferior dela até ela arfar.", "Segura ela contra a parede e beije.", "Lamba o rosto dela e morda o queixo.", "Chupe a língua dela durante o beijo.", "Beije o pescoço dela e dê uma chupada forte.", "Segura o rosto dela e diga que quer foder.", "Morda a orelha dela com as mãos nela.", "Dê selinhos e termine com uma mordida.", "Lamba o pescoço dela subindo pra boca.", "Enfie a língua fundo na garganta dela.", "Morda o lábio inferior até ela arfar.", "Segura ela contra a parede e beije.", "Lamba o rosto dela e morda o queixo.", "Troque saliva com ela de forma bruta."],
-                 ela: ["Dê um beijo de língua agressivo.", "Morda o lábio superior dele com força.", "Puxe o cabelo dele e não solte no beijo.", "Lamba os lábios antes de entrar com a língua.", "Chupe o pescoço dele pra deixar marca.", "Morda o nariz dele e depois a boca.", "Diz: 'me fode agora' no meio do beijo.", "Dê um beijo longo e barulhento.", "Lamba os dentes dele com sua língua.", "Envolva o pescoço dele e puxe.", "Beijo de língua bruto agora.", "Morda o lábio superior dele com força.", "Puxe o cabelo dele e não solte no beijo.", "Chupe o pescoço dele pra deixar marca.", "Dê um beijo molhado no maxilar."] },
-            5: { ele: ["Arranque a peça de baixo dela.", "Fique só de cueca e esfregue nela.", "Lamba a perna dela enquanto ela fica nua.", "Admira a buceta dela por cima da calcinha.", "Mão firme na bunda dela, direto na pele.", "Dê um tapa estalado na bunda dela.", "Morda a virilha dela por cima do pano.", "Passe a língua do umbigo até a calcinha.", "Beije a barriga dela com vontade.", "Diz: 'você tá deliciosa assim'.", "Arranque a calça ou saia dela.", "Fique só de cueca e esfregue nela.", "Chupe a parte interna da coxa dela.", "Morda o quadril dela com força.", "Dê um tapa estalado na bunda dela."],
-                 ela: ["Arranque a calça dele.", "Fique só de calcinha e sutiã na frente dele.", "Beije o pau dele por cima da cueca.", "Passe as unhas na coxa dele.", "Puxe a cueca dele pra ver o volume.", "Senta no colo dele e rebola com vontade.", "Lamba o mamilo dele.", "Esfregue sua buceta (com calcinha) no rosto dele.", "Morda a barriga dele.", "Diz: 'olha o que você faz comigo'.", "Arranque a calça dele agora.", "Fique só de calcinha e sutiã.", "Beije o pau dele por cima da cueca.", "Passe as unhas na coxa dele.", "Puxe ele pra você com as pernas."] },
-            6: { ele: ["Tire o sutiã dela com os dentes.", "Tire a calcinha dela e cheire.", "Olhe ela nua e lamba os lábios.", "Fique pelado e cole seu pau nela.", "Abraço nu total, sentindo tudo.", "Jogue ela na cama e fique por cima.", "Chupe os seios dela com força.", "Lamba o corpo dela como se fosse comida.", "Aperta a bunda dela com as duas mãos.", "Morda a coxa dela perto da buceta.", "Tire o sutiã dela com as mãos.", "Tire a calcinha dela bem devagar.", "Olhe ela nua e lamba os lábios.", "Abraço nu total, pele com pele.", "Chupe o bico do peito dela e puxe."],
-                 ela: ["Arranque a cueca dele.", "Tire sua última peça e se esfregue.", "Chupe o mamilo dele.", "Segura o pau dele com as mãos.", "Senta no colo dele, pele com pele.", "Lamba o tronco dele todo.", "Enlace as pernas nele e aperte.", "Dê um tapa no peito dele e beije.", "Sinta o pau dele batendo em você.", "Morda o ombro dele nua.", "Arranque a cueca dele.", "Tire sua última peça e se esfregue.", "Chupe o mamilo dele.", "Segura o pau dele com as mãos.", "Lamba o saco dele sem as mãos."] },
-            7: { ele: ["Chupe ela como se fosse sua última refeição.", "Enfie os dedos nela com força e ritmo.", "Foca a língua no clitóris sem parar.", "Beije e chupe a entrada dela.", "Massageie os seios dela enquanto faz oral.", "Pergunta: 'gosta assim, sua puta?'.", "Lamba ela de baixo pra cima com pressão.", "Morda a coxa dela enquanto faz oral.", "Leve ela ao limite e pare, provocando.", "Mergulhe o rosto nela e não saia.", "Use sua língua como um vibrador.", "Chupe os grandes lábios dela.", "Dê uma dedada profunda e lenta.", "Enfie dois dedos e rode.", "Lamba o bico do peito enquanto usa a mão."],
-                 ela: ["Diz: 'chupa minha buceta agora'.", "Guia a cabeça dele pra onde você quer.", "Puxe o cabelo dele enquanto ele te chupa.", "Dê gemidos altos no ouvido dele.", "Peça pra ele usar mais dedos.", "Arqueia a bunda pra ele ver tudo.", "Segura a mão dele e leva pro seu prazer.", "Diz o quanto o gosto dele é bom.", "Mande ele não parar por nada.", "Enfie os dedos na boca dele.", "Mande ele chupar sua buceta.", "Guia a cabeça dele pro seu prazer.", "Puxe o cabelo dele enquanto ele te chupa.", "Dê gemidos altos no ouvido dele.", "Mande ele usar a língua mais forte."] },
-            8: { ele: ["Mande ela beber sua porra hoje.", "Pede pra ela ir mais fundo na boca.", "Segura a cabeça dela no ritmo que você quer.", "Lamba o peito dela enquanto ela te chupa.", "Diga o quanto a boca dela é boa.", "Gema o nome dela bem alto.", "Pede pra ela usar a mão e a boca junto.", "Diga que vai gozar na cara dela.", "Mande ela olhar pra você enquanto chupa.", "Diz: 'você é uma safada do caralho'.", "Mande ela lamber suas bolas.", "Dê um tapa na cara dela e mande chupar.", "Diga: 'engole tudo hoje'.", "Puxe o cabelo dela enquanto ela chupa.", "Gire o pau na boca dela."],
-                 ela: ["Chupe o pau dele com vontade e barulho.", "Enfie o máximo que puder na garganta.", "Lamba o saco dele com carinho e mordidas.", "Foque na cabeça do pau com a língua.", "Use as duas mãos pra punhetar ele.", "Use lubrificante e faça um manual agressivo.", "Olhe nos olhos dele enquanto chupa.", "Leve ele ao limite e pare, rindo.", "Passe seu cabelo no pau dele.", "Morda a coxa dele e chupe as bolas.", "Faça um 'deep throat' profundo.", "Lamba a pontinha do pau devagar.", "Chupe o pau dele como um sorvete.", "Gema enquanto o pau entra na boca.", "Use muita saliva no pau dele."] },
-            9: { ele: ["Esfregue a cabeça do pau na buceta dela.", "Enfie só a pontinha e tire logo em seguida.", "Beijo de língua bruto enquanto aperta ela.", "Diz: 'vou te arrombar hoje'.", "Morda o pescoço dela e deixe marca.", "Segura os braços dela e roça nela.", "Vai e vem por fora, bem rápido.", "Arranhe a bunda dela com vontade.", "Ordem: 'abre bem essas pernas pra mim'.", "Lamba a entrada dela e coloque o dedo.", "Esfregue o pau nos lábios da buceta.", "Enfie só a pontinha e tire logo.", "Diz: 'vou te arrombar hoje'.", "Morda o pescoço e deixe marca.", "Sinta o quão molhada ela está com o pau."],
-                 ela: ["Esfregue sua buceta no pau dele, sem entrar.", "Segura o pau dele perto da sua entrada e para.", "Morda o ombro dele e arranhe.", "Diz: 'enfia esse pau em mim agora'.", "Senta por cima e sinta a pontinha.", "Faz um 69 agressivo.", "Mude de posição toda hora pra provocar.", "Pede pra ele te bater de leve.", "Esfregue seus peitos no rosto dele.", "Diz: 'eu sou sua, me fode'.", "Rebola no pau dele (sem entrar).", "Lamba o seu próprio dedo e ofereça a ele.", "Puxe o pau dele pra sua boca.", "Sussurre: 'tá doendo de vontade'.", "Dê uma sentada rápida e saia."] },
-            10: { ele: ["Enfie com tudo e não pare.", "Foda ela olhando no fundo do olho.", "Mude o ritmo: lento e depois bruto.", "Foda ela de quatro com vontade.", "Mete sem parar até o fim do tempo.", "Beijo de língua enquanto enterra o pau.", "Segura a mão dela e fode com força.", "Puxe o cabelo dela por trás enquanto mete.", "Para 10s lá dentro e dê uma tremida.", "Gozem juntos ou foque no prazer dela.", "Pegue ela no colo e foda.", "Mude pra posição de frango assado.", "Dê tapinhas na bunda enquanto mete.", "Gema o nome dela bem alto.", "Foda ela como se fosse a primeira vez."],
-                  ela: ["Senta no pau dele com toda sua força.", "Rebola e faça movimentos circulares.", "Foda ele de lado, apertadinho.", "Peça: 'vai, mete mais forte'.", "Cruze as pernas nas costas dele.", "Chupe o peito dele enquanto ele mete.", "Mude a posição pra ele durar mais.", "Dê gemidos altos de prazer.", "Puxe ele pra dentro de você com as mãos.", "Aproveite cada estocada dele.", "Senta de costas pra ele no pau.", "Morda o ombro dele enquanto ele mete.", "Grite o nome dele.", "Peça pra ele gozar dentro.", "Diga: 'que pau gostoso'."] }
+            1: { ele: ["Encare ela com vontade de devorar.", "Sussurra a putaria mais suja no ouvido dela.", "Cheira o pescoço dela e dê uma mordida.", "Diz onde você quer meter a boca primeiro.", "Segura a nuca dela e beije o pescoço.", "Diz o quanto o rabo dela te excita.", "Passa a mão no rosto dela com desejo.", "Morda o lábio dela com força.", "Diga que o cheiro dela te deixa louco.", "Dê um beijo de língua molhado.", "Sussurre o que vai fazer com ela.", "Lamba o lábio dela e olhe pro rabo.", "Sussurre: 'você é minha puta'.", "Aperte o pescoço dela e beije.", "Cheire o cangote dela com tesão."],
+                 ela: ["Diz o que você quer sentir lá dentro.", "Diz o quanto o pau dele te deixa molhada.", "Morda o lábio dele e olhe fixo.", "Puxe o cabelo dele e diga que ele é seu.", "Dê um beijo com muita língua.", "Diz que você não vê a hora de ser fodida.", "Arranhe o pescoço dele e morda a orelha.", "Puxe o lábio dele com o dente.", "Diga que adora o jeito que ele te pega.", "Cheire o pescoço dele e dê uma lambida.", "Diga que está ficando encharcada.", "Morda o ombro dele olhando pro pau.", "Sussurre: 'faz o que quiser'.", "Dê um tapa leve no rosto.", "Lamba a orelha e gema baixo."] },
+            2: { ele: ["Aperta a bunda dela com vontade.", "Morda o pescoço e desça até o colo.", "Massagem bruta nos ombros.", "Mão por dentro da blusa, sentindo o calor.", "Dá um tapa leve na bunda.", "Lamba a orelha e dê um sopro quente.", "Passe a mão no cabelo e puxe.", "Roça seu pau nela por cima da calça.", "Mão na nuca e beijo intenso.", "Dê uma mordida no ombro.", "Aperta a bunda por cima da roupa.", "Morda o pescoço.", "Aperte os peitos por cima da blusa.", "Mão por dentro da blusa.", "Segura a cintura com força."],
+                 ela: ["Enfie as unhas nas costas dele.", "Beijo na mandíbula descendo pro pescoço.", "Segura o pau por cima da calça.", "Esfregue sua buceta na perna dele.", "Língua no peito por dentro da camisa.", "Morda o peito.", "Brinca com o zíper da calça.", "Chupe o lóbulo da orelha.", "Passe a mão firme na coxa.", "Beijo molhado perto do ouvido.", "Enfie as unhas nas costas.", "Beijo na mandíbula.", "Segura o pau dele.", "Esfregue sua buceta.", "Puxe ele pela nuca."] },
+            3: { ele: ["Arranque a peça de cima dela.", "Tire os calçados e jogue longe.", "Lamba a pele que descobriu.", "Tire sua camisa e encoste o peito.", "Chupe o ombro agora nu.", "Tire o seu calçado.", "Dê um chupão na clavícula.", "Beije a nuca agora sem roupa.", "Diga: 'vou te deixar pelada'.", "Lamba a clavícula.", "Tire a peça de cima com os dentes.", "Lamba a pele das costas.", "Passe seu mamilo no dela.", "Morda a pele das costas.", "Cheire o peito dela."],
+                 ela: ["Arranque a camisa dele.", "Ajude ele a tirar a calça.", "Beije o peito dele sem roupa.", "Tire as meias dele com os dentes.", "Lamba o pescoço na pele.", "Arranque sua peça de cima.", "Esfregue seus seios nele.", "Morda o ombro com vontade.", "Puxe ele pelo cinto.", "Lamba o mamilo por cima do pano.", "Tire o seu calçado.", "Dê uma lambida no mamilo.", "Arranhe o peitoral.", "Sussurre: 'tira o resto'.", "Beije o abdômen."] },
+            4: { ele: ["Beijo de língua profundo e agressivo.", "Morda o lábio inferior até ela arfar.", "Segura contra a parede e beije.", "Lamba o rosto e morda o queixo.", "Chupe a língua dela no beijo.", "Beije o pescoço com chupada forte.", "Diga que quer foder muito.", "Morda a orelha com força.", "Dê selinhos e termine com mordida.", "Lamba o pescoço até a boca.", "Enfie a língua fundo na garganta.", "Troque saliva de forma bruta.", "Aperte os seios enquanto beija.", "Morda o pescoço com tesão.", "Puxe o cabelo dela beijando."],
+                 ela: ["Dê um beijo de língua agressivo.", "Morda o lábio superior com força.", "Puxe o cabelo e não solte.", "Lamba os lábios antes da língua.", "Chupe o pescoço pra marcar.", "Morda o nariz e depois a boca.", "Diz: 'me fode agora'.", "Beijo longo e barulhento.", "Lamba os dentes dele.", "Envolva o pescoço e puxe.", "Beijo de língua bruto.", "Morda o lábio e puxe.", "Beijo molhado no maxilar.", "Lamba a língua dele.", "Gema no beijo."] },
+            5: { ele: ["Arranque a peça de baixo dela.", "Fique só de cueca e esfregue.", "Lamba a coxa enquanto a roupa desce.", "Mão firme na bunda, na pele.", "Dê um tapa estalado na bunda.", "Morda a virilha por cima do pano.", "Passe a língua até a calcinha.", "Beije a barriga com vontade.", "Diz: 'você tá deliciosa'.", "Arranque a calça dela.", "Chupe the parte interna da coxa.", "Morda o quadril com força.", "Sinta o calor da buceta na mão.", "Dê um beijo na calcinha.", "Levante ela e sinta o peso."],
+                 ela: ["Arranque a calça dele.", "Fique só de lingerie.", "Beije o pau por cima da cueca.", "Passe as unhas na coxa.", "Puxe a cueca pra ver o volume.", "Senta no colo e rebola.", "Lamba o mamilo.", "Esfregue a buceta no rosto dele.", "Morda a barriga.", "Diz: 'olha o que você faz comigo'.", "Arranque a calça dele logo.", "Beije o abdômen dele.", "Puxe ele com as pernas.", "Dê um tapa na coxa dele.", "Morda a virilha."] },
+            6: { ele: ["Tire o sutiã com os dentes.", "Tire a calcinha e cheire.", "Fique pelado e cole o pau nela.", "Abraço nu total.", "Chupe os seios com força.", "Lamba o corpo como comida.", "Aperta a bunda com as duas mãos.", "Morda a coxa perto da buceta.", "Tire a lingerie dela.", "Lamba os mamilos e sopre.", "Deite ela e abra as pernas.", "Chupe o bico do peito e puxe.", "Lamba até a buceta.", "Dê uma mordida na bunda.", "Gire ela e admire por trás."],
+                 ela: ["Arranque a cueca dele.", "Fique nua e se esfregue.", "Lamba o tronco dele todo.", "Segura o pau com as mãos.", "Senta no colo, pele com pele.", "Chupe o mamilo dele.", "Enlace as pernas e aperte.", "Lamba o pescoço até o peito.", "Sinta o pau batendo em você.", "Dê um tapa no peito e beije.", "Tire sua última peça.", "Lamba o saco sem as mãos.", "Segura o pau e sinta o calor.", "Dê um beijo na base.", "Morda o ombro dele nua."] },
+            7: { ele: ["Chupe ela como sua última refeição.", "Enfie os dedos com força.", "Foca a língua no clitóris.", "Beije e chupe a entrada dela.", "Aperte o peito enquanto faz oral.", "Pergunta: 'gosta assim, sua puta?'.", "Lamba de baixo pra cima.", "Morda a coxa no oral.", "Leve ao limite e pare.", "Mergulhe o rosto nela.", "Use a língua como vibrador.", "Chupe os grandes lábios.", "Dedada profunda e lenta.", "Enfie dois dedos e rode.", "Lamba o bico do peito no oral."],
+                 ela: ["Diz: 'chupa minha buceta agora'.", "Guia a cabeça dele.", "Puxe o cabelo no oral.", "Dê gemidos altos no ouvido.", "Peça pra usar mais dedos.", "Arqueia a bunda pra ele ver.", "Leve a mão dele pro clitóris.", "Diz que o gosto dele é viciante.", "Mande não parar por nada.", "Enfie os dedos na boca dele.", "Empurre a cabeça dele.", "Grite de prazer.", "Diga: 'faz melhor que todos'.", "Mande usar língua mais forte.", "Peça: 'bebe todo o meu mel'."] },
+            8: { ele: ["Diz: 'bebe minha porra hoje'.", "Pede pra ir mais fundo na boca.", "Segura a cabeça dela no ritmo.", "Lamba o peito enquanto ela chupa.", "Diga que a boca dela é o paraíso.", "Gema o nome dela bem alto.", "Pede mão e boca junto.", "Diga que vai gozar na cara.", "Mande ela olhar pra você.", "Diz: 'você é uma safada'.", "Mande lamber suas bolas.", "Dê um tapa e mande chupar.", "Diga: 'engole tudo'.", "Puxe o cabelo dela.", "Gire o pau na boca dela."],
+                 ela: ["Chupe o pau com barulho.", "Enfie tudo na garganta.", "Lamba o saco com mordidas.", "Foque na cabeça com a língua.", "Use as duas mãos pra punhetar.", "Manual agressivo com lubrificante.", "Olhe nos olhos enquanto chupa.", "Leve ao limite e pare.", "Passe seu cabelo no pau.", "Morda a coxa e chupe as bolas.", "Faça deep throat profundo.", "Lamba a pontinha devagar.", "Chupe como sorvete.", "Gema com o pau na boca.", "Use muita saliva."] },
+            9: { ele: ["Esfregue a cabeça do pau na buceta.", "Enfie só a pontinha e tire.", "Beijo de língua bruto apertando.", "Diz: 'vou te arrombar'.", "Morda o pescoço e deixe marca.", "Segura os braços e roça.", "Vai e vem por fora, rápido.", "Arranhe a bunda com vontade.", "Ordem: 'abre as pernas pra mim'.", "Lamba a entrada e use o dedo.", "Esfregue nos lábios da buceta.", "Diga: 'implora pra eu entrar'.", "Sinta o quão molhada ela está.", "Beijo bruto se esfregando.", "Dê um tapa e encoste o pau."],
+                 ela: ["Esfregue a buceta no pau.", "Segura o pau na entrada e para.", "Morda o ombro e arranhe.", "Diz: 'enfia esse pau agora'.", "Senta por cima e sinta a pontinha.", "Faz um 69 agressivo.", "Mude de posição pra provocar.", "Pede pra ele bater de leve.", "Esfregue os peitos no rosto dele.", "Diz: 'eu sou sua, me fode'.", "Rebola no pau (sem entrar).", "Lamba seu dedo e ofereça a ele.", "Puxe o pau pra sua boca.", "Sussurre: 'tá doendo de vontade'.", "Dê uma sentada rápida e saia."] },
+            10: { ele: ["Enfie com tudo e não pare.", "Foda olhando no fundo do olho.", "Ritmo lento e depois bruto.", "Foda de quatro com vontade.", "Mete sem parar até o fim.", "Beijo enterrando o pau.", "Segura a mão e fode com força.", "Puxe o cabelo por trás metendo.", "Para 10s lá dentro e trema.", "Gozem juntos.", "Pegue ela no colo e foda.", "Mude pra frango assado.", "Dê tapinhas na bunda metendo.", "Gema o nome dela.", "Foda como se fosse a primeira vez."],
+                  ela: ["Senta no pau com toda força.", "Rebola em círculos.", "Foda de lado, apertadinho.", "Peça: 'vai, mete mais forte'.", "Cruze as pernas nas costas dele.", "Chupe o peito enquanto ele mete.", "Mude a posição pra durar.", "Gemidos altos de prazer.", "Puxe ele pra dentro de você.", "Aproveite cada estocada.", "Senta de costas no pau.", "Morda o ombro enquanto ele mete.", "Grite o nome dele.", "Peça pra gozar dentro.", "Diga: 'que pau gostoso'."] }
         };
 
         let state = { lv: 1, p1: 'ELE', p2: 'ELA', tr: 'ele', nts: [], acts: 0, min: 120, max: 300, inc: 30 };
         let timer;
+        let currentScreen = 's-start';
 
-        function save() { localStorage.setItem('flow_pc_v1', JSON.stringify(state)); }
+        // FUNÇÃO DE ALARME AGRESSIVO (Onda Quadrada Tripla)
+        function playAlertSound() {
+            const context = new (window.AudioContext || window.webkitAudioContext)();
+            
+            function beep(time) {
+                const osc = context.createOscillator();
+                const gain = context.createGain();
+                osc.type = 'square'; // Onda quadrada (muito mais alertiva)
+                osc.frequency.setValueAtTime(600, time);
+                gain.gain.setValueAtTime(0.1, time);
+                gain.gain.exponentialRampToValueAtTime(0.01, time + 0.3);
+                osc.connect(gain);
+                gain.connect(context.destination);
+                osc.start(time);
+                osc.stop(time + 0.3);
+            }
+
+            // Sequência de 3 Bips
+            beep(context.currentTime);
+            beep(context.currentTime + 0.5);
+            beep(context.currentTime + 1.0);
+        }
+
+        function save() { localStorage.setItem('flow_pc_final', JSON.stringify(state)); }
         function load() { 
-            const v = localStorage.getItem('flow_pc_v1'); 
+            const v = localStorage.getItem('flow_pc_final'); 
             if(v) { 
                 state = JSON.parse(v); 
                 document.getElementById('p1').value = state.p1;
@@ -133,69 +139,62 @@
             } 
         }
 
-        function show(id) { document.querySelectorAll('.screen').forEach(x => x.classList.remove('active')); document.getElementById(id).classList.add('active'); }
-        function saveSettings() { 
-            state.min = parseInt(document.getElementById('c-min').value); 
-            state.max = parseInt(document.getElementById('c-max').value); 
-            state.inc = parseInt(document.getElementById('c-inc').value); 
-            save(); show('s-start'); 
-        }
-        function start() { 
-            state.p1 = document.getElementById('p1').value || 'ELE';
-            state.p2 = document.getElementById('p2').value || 'ELA';
-            save(); initLv(); 
-        }
+        function show(id) { document.querySelectorAll('.screen').forEach(x => x.classList.remove('active')); document.getElementById(id).classList.add('active'); currentScreen = id; }
+        
+        window.addEventListener('keydown', (e) => {
+            if (document.activeElement.tagName === 'INPUT') return;
+            const key = e.key.toLowerCase();
+            if(key === 'f') toggleFullScreen();
+            if(e.key === 'Escape') exitToHome();
+            if(currentScreen === 's-start' && e.key === 'Enter') start();
+            if(currentScreen === 's-game') {
+                if(e.code === 'Space' || e.key === 'Enter') {
+                    if(document.getElementById('b-run').style.display !== 'none') runTimer();
+                    else if(document.getElementById('b-rate').style.display !== 'none') showRate();
+                }
+                if(key === 'p') skipAction();
+                if(key === 'l') skipLevel();
+            }
+            if(currentScreen === 's-rate') {
+                if(key >= '1' && key <= '9') recordRating(parseInt(key));
+                if(key === '0') recordRating(10);
+            }
+            if(currentScreen === 's-up' && e.key === 'Enter') nextLevel();
+        });
+
+        function saveSettings() { state.min = parseInt(document.getElementById('c-min').value); state.max = parseInt(document.getElementById('c-max').value); state.inc = parseInt(document.getElementById('c-inc').value); save(); show('s-start'); }
+        function start() { state.p1 = document.getElementById('p1').value || 'ELE'; state.p2 = document.getElementById('p2').value || 'ELA'; save(); initLv(); }
         function initLv() { state.acts = 0; state.nts = []; update(); draw(); show('s-game'); }
-        function skipLevel() { if(state.lv < 10) { if(confirm("Avançar para o próximo nível?")) { state.lv++; save(); show('s-up'); } } }
+        function skipLevel() { if(state.lv < 10) { if(confirm("Nível seguinte?")) { state.lv++; save(); show('s-up'); } } }
         function nextLevel() { initLv(); }
-        function update() { 
-            document.getElementById('l-lv').innerText = `Nível ${state.lv}`; 
-            document.getElementById('l-tr').innerText = `Vez de: ${state.tr === 'ele' ? state.p1 : state.p2}`; 
-            const m = state.nts.length ? (state.nts.reduce((a,b)=>a+b)/s.nts.length).toFixed(1) : 0; 
-        }
-        function draw() { 
-            clearInterval(timer);
-            document.getElementById('b-run').style.display = 'block'; 
-            document.getElementById('b-rate').style.display = 'none'; 
-            document.getElementById('b-skip').style.display = 'block'; 
-            document.getElementById('l-tm').innerText = "00:00"; 
-            const l = db[state.lv][state.tr]; 
-            document.getElementById('l-txt').innerText = l[Math.floor(Math.random() * l.length)]; 
-            document.getElementById('l-who').innerText = state.tr === 'ele' ? `${state.p1} FAZ EM ${state.p2}` : `${state.p2} FAZ EM ${state.p1}`; 
-        }
+        function update() { document.getElementById('l-lv').innerText = `Nível ${state.lv}`; document.getElementById('l-tr').innerText = `Vez de: ${state.tr === 'ele' ? state.p1 : state.p2}`; }
+        function draw() { clearInterval(timer); document.getElementById('b-run').style.display = 'block'; document.getElementById('b-rate').style.display = 'none'; document.getElementById('b-skip').style.display = 'block'; document.getElementById('l-tm').innerText = "00:00"; const l = db[state.lv][state.tr]; document.getElementById('l-txt').innerText = l[Math.floor(Math.random() * l.length)]; document.getElementById('l-who').innerText = state.tr === 'ele' ? `${state.p1} EM ${state.p2}` : `${state.p2} EM ${state.p1}`; }
+        
         function runTimer() {
             document.getElementById('b-run').style.display = 'none';
             document.getElementById('b-skip').style.display = 'none';
             let bonus = (state.lv - 1) * state.inc;
-            let mS = state.min + bonus, MS = state.max + bonus;
-            let sec = Math.floor(Math.random() * (MS - mS + 1)) + mS;
+            let sec = Math.floor(Math.random() * ((state.max + bonus) - (state.min + bonus) + 1)) + (state.min + bonus);
             timer = setInterval(() => {
                 sec--;
                 let min = Math.floor(sec / 60); let remSec = sec % 60;
                 document.getElementById('l-tm').innerText = `${min.toString().padStart(2, '0')}:${remSec.toString().padStart(2, '0')}`;
-                if(sec <= 0) { clearInterval(timer); document.getElementById('b-rate').style.display = 'block'; }
+                if(sec <= 0) { 
+                    clearInterval(timer); 
+                    playAlertSound(); 
+                    document.getElementById('b-rate').style.display = 'block'; 
+                }
             }, 1000);
         }
+
         function skipAction() { if(confirm("Pular?")) { state.tr = (state.tr === 'ele' ? 'ela' : 'ele'); save(); update(); draw(); } }
         function exitToHome() { clearInterval(timer); show('s-start'); }
-        function showRate() {
-            document.getElementById('l-rate-msg').innerText = `Nota de ${state.tr === 'ele' ? state.p2 : state.p1}:`;
-            show('s-rate'); 
-            const g = document.getElementById('notes'); g.innerHTML = '';
-            for(let i=1; i<=10; i++) {
-                let b = document.createElement('button'); b.className = 'btn-note'; b.innerText = i;
-                b.onclick = () => recordRating(i); g.appendChild(b);
-            }
-        }
-        function recordRating(nota) {
-            state.nts.push(nota); state.acts++;
-            const media = state.nts.reduce((a,b)=>a+b)/state.nts.length;
-            state.tr = (state.tr === 'ele' ? 'ela' : 'ele');
-            if(state.acts >= 4 && media >= 8.5 && state.lv < 10) { state.lv++; save(); show('s-up'); } 
-            else { save(); update(); draw(); show('s-game'); }
-        }
-        function reset() { if(confirm("Resetar?")) { localStorage.removeItem('flow_pc_v1'); location.reload(); } }
+        function toggleFullScreen() { if (!document.fullscreenElement) document.documentElement.requestFullscreen(); else document.exitFullscreen(); }
+        function showRate() { document.getElementById('l-rate-msg').innerText = `Nota de ${state.tr === 'ele' ? state.p2 : state.p1}:`; show('s-rate'); const g = document.getElementById('notes'); g.innerHTML = ''; for(let i=1; i<=10; i++) { let b = document.createElement('button'); b.className = 'btn-note'; b.innerText = i; b.onclick = () => recordRating(i); g.appendChild(b); } }
+        function recordRating(nota) { state.nts.push(nota); state.acts++; const media = state.nts.reduce((a,b)=>a+b)/state.nts.length; state.tr = (state.tr === 'ele' ? 'ela' : 'ele'); if(state.acts >= 4 && media >= 8.5 && state.lv < 10) { state.lv++; save(); show('s-up'); } else { save(); update(); draw(); show('s-game'); } }
+        function reset() { if(confirm("Resetar?")) { localStorage.removeItem('flow_pc_final'); location.reload(); } }
         window.onload = load;
     </script>
 </body>
+</html>
 </html>
