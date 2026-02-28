@@ -2,80 +2,130 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Flow: Sem Filtro - PC ALARM EDITION</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Flow: Sem Filtro - Universal Edition</title>
     <style>
         :root { --bg: #000; --red: #ff0000; --wine: #4a0000; --gold: #D4AF37; }
         body { background: var(--bg); color: #fff; font-family: 'Segoe UI', sans-serif; margin: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; text-align: center; overflow: hidden; }
-        .screen { display: none; width: 90%; max-width: 1200px; flex-direction: column; gap: 20px; }
+        
+        /* Layout Base (Fluido) */
+        .screen { display: none; width: 95%; max-width: 1200px; flex-direction: column; gap: 20px; box-sizing: border-box; }
         .active { display: flex; }
+        
+        /* Estilos Padrão (Focados em PC MASTER) */
         h1 { color: var(--red); font-size: 3.5rem; letter-spacing: 5px; margin: 0; text-shadow: 0 0 20px var(--red); }
         h2 { color: var(--gold); font-size: 2rem; margin: 0; }
         p { font-size: 2.5rem; font-weight: bold; line-height: 1.2; margin: 20px 0; }
-        .btn { background: var(--wine); color: #fff; border: 1px solid var(--red); padding: 25px; font-size: 1.5rem; border-radius: 8px; cursor: pointer; text-transform: uppercase; font-weight: bold; transition: 0.3s; }
+        
+        .btn { background: var(--wine); color: #fff; border: 1px solid var(--red); padding: 25px; font-size: 1.5rem; border-radius: 8px; cursor: pointer; text-transform: uppercase; font-weight: bold; transition: 0.3s; width: 100%; max-width: 600px; align-self: center; box-sizing: border-box; }
         .btn:hover { background: var(--red); box-shadow: 0 0 25px var(--red); }
+        
         .timer { font-size: 10rem; color: var(--red); margin: 10px 0; font-family: monospace; text-shadow: 0 0 30px var(--red); }
+        
+        /* Grelha de Notas Padrão */
         .rating-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 15px; width: 100%; max-width: 900px; align-self: center; }
-        .btn-note { background: #1a1a1a; border: 1px solid var(--gold); color: var(--gold); padding: 25px; font-size: 2.5rem; border-radius: 10px; }
-        .status { font-size: 1.2rem; color: #666; text-transform: uppercase; display: flex; justify-content: space-between; width: 100%; padding: 30px; position: absolute; top: 0; box-sizing: border-box; }
+        .btn-note { background: #1a1a1a; border: 1px solid var(--gold); color: var(--gold); padding: 25px; font-size: 2.5rem; border-radius: 10px; cursor: pointer; }
+        
+        /* Barra de Status Padrão */
+        .status { font-size: 1.2rem; color: #666; text-transform: uppercase; display: flex; justify-content: space-between; width: 100%; padding: 30px; position: absolute; top: 0; box-sizing: border-box; z-index: 10; }
         .btn-top { background: transparent; border: 1px solid #444; color: #888; padding: 10px 15px; font-size: 1rem; border-radius: 5px; cursor: pointer; margin-left: 10px; }
-        .name-input { background: #111; border: 2px solid var(--gold); color: #fff; padding: 15px; font-size: 1.8rem; width: 350px; text-align: center; border-radius: 10px; }
-        input[type="number"], select { background: #222; border: 1px solid var(--red); color: #fff; padding: 10px; font-size: 1.8rem; text-align: center; border-radius: 5px; }
+        
+        /* Inputs Padrão */
+        .name-input { background: #111; border: 2px solid var(--gold); color: #fff; padding: 15px; font-size: 1.8rem; width: 100%; max-width: 350px; text-align: center; border-radius: 10px; box-sizing: border-box; }
+        input[type="number"], select { background: #222; border: 1px solid var(--red); color: #fff; padding: 10px; font-size: 1.8rem; text-align: center; border-radius: 5px; width: 100%; max-width: 150px; box-sizing: border-box; }
         .row { display: flex; justify-content: space-between; align-items: center; background: #111; padding: 25px; border-radius: 10px; width: 100%; box-sizing: border-box; }
+        
+        /* Contentores Específicos para Responsividade */
+        .start-names-row { display: flex; gap: 30px; justify-content: center; margin: 30px 0; width: 100%; }
+
+        /* ========================================= */
+        /* MEDIA QUERY PARA CELULAR (Telas Pequenas) */
+        /* ========================================= */
+        @media (max-width: 768px) {
+            h1 { font-size: 1.8rem; letter-spacing: 2px; }
+            h2 { font-size: 1.2rem; }
+            p { font-size: 1.4rem; margin: 15px 0; }
+            
+            .screen { gap: 15px; width: 92%; }
+            
+            .btn { padding: 15px; font-size: 1.1rem; }
+            
+            .timer { font-size: 4rem; margin: 5px 0; }
+            
+            /* Ajuste na Grelha de Notas para Mobile */
+            .rating-grid { gap: 8px; max-width: 100%; }
+            .btn-note { padding: 15px 5px; font-size: 1.3rem; border-radius: 5px; }
+            
+            /* Ajuste na Barra de Status */
+            .status { font-size: 0.8rem; padding: 15px; flex-direction: column; gap: 10px; align-items: center; background: rgba(0,0,0,0.8); position: relative; }
+            .status-buttons { margin-top: 5px; }
+            .btn-top { font-size: 0.7rem; padding: 5px 8px; margin: 0 3px; }
+            
+            /* Ajuste nos Inputs */
+            .start-names-row { flex-direction: column; gap: 10px; margin: 15px 0; align-items: center; }
+            .name-input { font-size: 1.2rem; padding: 10px; max-width: 90%; }
+            input[type="number"], select { font-size: 1.2rem; padding: 8px; max-width: 100px; }
+            .row { flex-direction: column; gap: 10px; padding: 15px; align-items: center; text-align: center; }
+            
+            /* Remove textos de atalhos de teclado no mobile */
+            .pc-hint { display: none; }
+        }
     </style>
 </head>
 <body>
 
     <div class="status">
         <div id="status-left"><span id="l-lv">Nível 1</span> | <span id="l-tr">Vez de...</span></div>
-        <div style="display:flex;">
-            <button class="btn-top" onclick="toggleFullScreen()">TELA CHEIA (F)</button>
-            <button class="btn-top" onclick="skipLevel()">PULAR NÍVEL (L)</button>
-            <button class="btn-top" onclick="exitToHome()">SAIR (ESC)</button>
+        <div class="status-buttons" style="display:flex;">
+            <button class="btn-top" onclick="toggleFullScreen()">TELA CHEIA<span class="pc-hint"> (F)</span></button>
+            <button class="btn-top" onclick="skipLevel()">PULAR NÍVEL<span class="pc-hint"> (L)</span></button>
+            <button class="btn-top" onclick="exitToHome()">SAIR<span class="pc-hint"> (ESC)</span></button>
         </div>
     </div>
 
     <div id="s-start" class="screen active">
         <h1>FLOW: SEM FILTRO</h1>
-        <div style="display:flex; gap:30px; justify-content:center; margin: 30px 0;">
+        <div class="start-names-row">
             <input type="text" id="p1" class="name-input" placeholder="Nome Dele">
             <input type="text" id="p2" class="name-input" placeholder="Nome Dela">
         </div>
         <button class="btn" onclick="show('s-settings')">Ajustar Tempo</button>
-        <button class="btn" style="margin-top:15px; border-color: var(--gold);" onclick="start()">ENTRAR NO JOGO (ENTER)</button>
+        <button class="btn" style="margin-top:10px; border-color: var(--gold);" onclick="start()">ENTRAR NO JOGO<span class="pc-hint"> (ENTER)</span></button>
+        <button class="btn" style="background:#222; border:none; margin-top:20px; font-size:0.7rem; padding: 10px;" onclick="reset()">Resetar Tudo</button>
     </div>
 
     <div id="s-settings" class="screen">
-        <h2>Ajustes Globais</h2>
-        <div class="row"><label>Mínimo (seg):</label><input type="number" id="c-min" value="120"></div>
-        <div class="row"><label>Máximo (seg):</label><input type="number" id="c-max" value="300"></div>
+        <h2>Ajustes da Noite</h2>
+        <div class="row"><label>Mínimo (seg):</label><input type="number" id="c-min" value="120" inputmode="numeric"></div>
+        <div class="row"><label>Máximo (seg):</label><input type="number" id="c-max" value="300" inputmode="numeric"></div>
         <div class="row"><label>Bônus por Nível (seg):</label><select id="c-inc"><option value="0">Off</option><option value="30" selected>+30s</option><option value="60">+60s</option></select></div>
-        <button class="btn" onclick="saveSettings()">Salvar (ENTER)</button>
+        <button class="btn" onclick="saveSettings()">Salvar<span class="pc-hint"> (ENTER)</span></button>
     </div>
 
     <div id="s-game" class="screen">
-        <h2 id="l-who" style="color:var(--gold); font-size: 3rem;">Ação</h2>
+        <h2 id="l-who" style="color:var(--gold); font-size: 2.5rem;">Ação</h2>
         <p id="l-txt">Sorteando...</p>
         <div class="timer" id="l-tm">00:00</div>
-        <button id="b-run" class="btn" onclick="runTimer()">COMEÇAR ATO (ESPAÇO)</button>
-        <button id="b-rate" class="btn" style="display:none;" onclick="showRate()">AVALIAR (ENTER)</button>
-        <button id="b-skip" class="btn" style="background:#222; border:none; margin-top:20px; font-size: 1.2rem;" onclick="skipAction()">Pular Ação (P)</button>
+        <button id="b-run" class="btn" onclick="runTimer()">COMEÇAR ATO<span class="pc-hint"> (ESPAÇO)</span></button>
+        <button id="b-rate" class="btn" style="display:none;" onclick="showRate()">AVALIAR<span class="pc-hint"> (ENTER)</span></button>
+        <button id="b-skip" class="btn" style="background:#222; border:none; margin-top:20px; font-size: 0.9rem; padding: 10px;" onclick="skipAction()">Pular Ação<span class="pc-hint"> (P)</span></button>
     </div>
 
     <div id="s-rate" class="screen">
-        <h2 id="l-rate-msg" style="font-size: 2.5rem;">Nota:</h2>
+        <h2 id="l-rate-msg" style="font-size: 2rem;">Nota:</h2>
         <div class="rating-grid" id="notes"></div>
-        <p style="font-size:1.5rem; color:#666;">Pressione 1-9 ou 0</p>
+        <p style="font-size:1.2rem; color:#666;" class="pc-hint">Pressione 1-9 ou 0 no teclado</p>
     </div>
 
     <div id="s-up" class="screen">
-        <h1 style="font-size:8rem;">🫦</h1>
-        <h1>NÍVEL SUBIU!</h1>
+        <h1 style="font-size:6rem;">🫦</h1>
+        <h1 style="font-size:3rem;">NÍVEL SUBIU!</h1>
         <p>A coisa ficou séria. Avançando...</p>
-        <button class="btn" onclick="nextLevel()">PRÓXIMO NÍVEL (ENTER)</button>
+        <button class="btn" onclick="nextLevel()">AVANÇAR<span class="pc-hint"> (ENTER)</span></button>
     </div>
 
     <script>
+        // BANCO DE DADOS MANTIDO (300 AÇÕES AGRESSIVAS SEM TEMPO)
         const db = {
             1: { ele: ["Encare ela com vontade de devorar.", "Sussurra a putaria mais suja no ouvido dela.", "Cheira o pescoço dela e dê uma mordida.", "Diz onde você quer meter a boca primeiro.", "Segura a nuca dela e beije o pescoço.", "Diz o quanto o rabo dela te excita.", "Passa a mão no rosto dela com desejo.", "Morda o lábio dela com força.", "Diga que o cheiro dela te deixa louco.", "Dê um beijo de língua molhado.", "Sussurre o que vai fazer com ela.", "Lamba o lábio dela e olhe pro rabo.", "Sussurre: 'você é minha puta'.", "Aperte o pescoço dela e beije.", "Cheire o cangote dela com tesão."],
                  ela: ["Diz o que você quer sentir lá dentro.", "Diz o quanto o pau dele te deixa molhada.", "Morda o lábio dele e olhe fixo.", "Puxe o cabelo dele e diga que ele é seu.", "Dê um beijo com muita língua.", "Diz que você não vê a hora de ser fodida.", "Arranhe o pescoço dele e morda a orelha.", "Puxe o lábio dele com o dente.", "Diga que adora o jeito que ele te pega.", "Cheire o pescoço dele e dê uma lambida.", "Diga que está ficando encharcada.", "Morda o ombro dele olhando pro pau.", "Sussurre: 'faz o que quiser'.", "Dê um tapa leve no rosto.", "Lamba a orelha e gema baixo."] },
@@ -85,7 +135,7 @@
                  ela: ["Arranque a camisa dele.", "Ajude ele a tirar a calça.", "Beije o peito dele sem roupa.", "Tire as meias dele com os dentes.", "Lamba o pescoço na pele.", "Arranque sua peça de cima.", "Esfregue seus seios nele.", "Morda o ombro com vontade.", "Puxe ele pelo cinto.", "Lamba o mamilo por cima do pano.", "Tire o seu calçado.", "Dê uma lambida no mamilo.", "Arranhe o peitoral.", "Sussurre: 'tira o resto'.", "Beije o abdômen."] },
             4: { ele: ["Beijo de língua profundo e agressivo.", "Morda o lábio inferior até ela arfar.", "Segura contra a parede e beije.", "Lamba o rosto e morda o queixo.", "Chupe a língua dela no beijo.", "Beije o pescoço com chupada forte.", "Diga que quer foder muito.", "Morda a orelha com força.", "Dê selinhos e termine com mordida.", "Lamba o pescoço até a boca.", "Enfie a língua fundo na garganta.", "Troque saliva de forma bruta.", "Aperte os seios enquanto beija.", "Morda o pescoço com tesão.", "Puxe o cabelo dela beijando."],
                  ela: ["Dê um beijo de língua agressivo.", "Morda o lábio superior com força.", "Puxe o cabelo e não solte.", "Lamba os lábios antes da língua.", "Chupe o pescoço pra marcar.", "Morda o nariz e depois a boca.", "Diz: 'me fode agora'.", "Beijo longo e barulhento.", "Lamba os dentes dele.", "Envolva o pescoço e puxe.", "Beijo de língua bruto.", "Morda o lábio e puxe.", "Beijo molhado no maxilar.", "Lamba a língua dele.", "Gema no beijo."] },
-            5: { ele: ["Arranque a peça de baixo dela.", "Fique só de cueca e esfregue.", "Lamba a coxa enquanto a roupa desce.", "Mão firme na bunda, na pele.", "Dê um tapa estalado na bunda.", "Morda a virilha por cima do pano.", "Passe a língua até a calcinha.", "Beije a barriga com vontade.", "Diz: 'você tá deliciosa'.", "Arranque a calça dela.", "Chupe the parte interna da coxa.", "Morda o quadril com força.", "Sinta o calor da buceta na mão.", "Dê um beijo na calcinha.", "Levante ela e sinta o peso."],
+            5: { ele: ["Arranque a peça de baixo dela.", "Fique só de cueca e esfregue.", "Lamba a coxa enquanto a roupa desce.", "Mão firme na bunda, na pele.", "Dê um tapa estalado na bunda.", "Morda a virilha por cima do pano.", "Passe a língua até a calcinha.", "Beije a barriga com vontade.", "Diz: 'você tá deliciosa'.", "Arranque a calça dela.", "Chupe a parte interna da coxa.", "Morda o quadril com força.", "Sinta o calor da buceta na mão.", "Dê um beijo na calcinha.", "Levante ela e sinta o peso."],
                  ela: ["Arranque a calça dele.", "Fique só de lingerie.", "Beije o pau por cima da cueca.", "Passe as unhas na coxa.", "Puxe a cueca pra ver o volume.", "Senta no colo e rebola.", "Lamba o mamilo.", "Esfregue a buceta no rosto dele.", "Morda a barriga.", "Diz: 'olha o que você faz comigo'.", "Arranque a calça dele logo.", "Beije o abdômen dele.", "Puxe ele com as pernas.", "Dê um tapa na coxa dele.", "Morda a virilha."] },
             6: { ele: ["Tire o sutiã com os dentes.", "Tire a calcinha e cheire.", "Fique pelado e cole o pau nela.", "Abraço nu total.", "Chupe os seios com força.", "Lamba o corpo como comida.", "Aperta a bunda com as duas mãos.", "Morda a coxa perto da buceta.", "Tire a lingerie dela.", "Lamba os mamilos e sopre.", "Deite ela e abra as pernas.", "Chupe o bico do peito e puxe.", "Lamba até a buceta.", "Dê uma mordida na bunda.", "Gire ela e admire por trás."],
                  ela: ["Arranque a cueca dele.", "Fique nua e se esfregue.", "Lamba o tronco dele todo.", "Segura o pau com as mãos.", "Senta no colo, pele com pele.", "Chupe o mamilo dele.", "Enlace as pernas e aperte.", "Lamba o pescoço até o peito.", "Sinta o pau batendo em você.", "Dê um tapa no peito e beije.", "Tire sua última peça.", "Lamba o saco sem as mãos.", "Segura o pau e sinta o calor.", "Dê um beijo na base.", "Morda o ombro dele nua."] },
@@ -102,33 +152,38 @@
         let state = { lv: 1, p1: 'ELE', p2: 'ELA', tr: 'ele', nts: [], acts: 0, min: 120, max: 300, inc: 30 };
         let timer;
         let currentScreen = 's-start';
+        let audioCtx; // Áudio unificado
 
-        // FUNÇÃO DE ALARME AGRESSIVO (Onda Quadrada Tripla)
-        function playAlertSound() {
-            const context = new (window.AudioContext || window.webkitAudioContext)();
-            
-            function beep(time) {
-                const osc = context.createOscillator();
-                const gain = context.createGain();
-                osc.type = 'square'; // Onda quadrada (muito mais alertiva)
-                osc.frequency.setValueAtTime(600, time);
-                gain.gain.setValueAtTime(0.1, time);
-                gain.gain.exponentialRampToValueAtTime(0.01, time + 0.3);
-                osc.connect(gain);
-                gain.connect(context.destination);
-                osc.start(time);
-                osc.stop(time + 0.3);
-            }
-
-            // Sequência de 3 Bips
-            beep(context.currentTime);
-            beep(context.currentTime + 0.5);
-            beep(context.currentTime + 1.0);
+        // FUNÇÃO DE ÁUDIO AGRESSIVO (Ativada por gesto do usuário para mobile)
+        function initAudio() {
+            if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
         }
 
-        function save() { localStorage.setItem('flow_pc_final', JSON.stringify(state)); }
+        function playAlertSound() {
+            if (!audioCtx) return;
+            const time = audioCtx.currentTime;
+            
+            function beep(t) {
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.type = 'square';
+                osc.frequency.setValueAtTime(600, t);
+                gain.gain.setValueAtTime(0.05, t); // Volume mais baixo para não estourar no cell
+                gain.gain.exponentialRampToValueAtTime(0.001, t + 0.3);
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+                osc.start(t);
+                osc.stop(t + 0.3);
+            }
+
+            beep(time);
+            beep(time + 0.5);
+            beep(time + 1.0);
+        }
+
+        function save() { localStorage.setItem('flow_universal_final', JSON.stringify(state)); }
         function load() { 
-            const v = localStorage.getItem('flow_pc_final'); 
+            const v = localStorage.setItem('flow_universal_final'); 
             if(v) { 
                 state = JSON.parse(v); 
                 document.getElementById('p1').value = state.p1;
@@ -141,6 +196,7 @@
 
         function show(id) { document.querySelectorAll('.screen').forEach(x => x.classList.remove('active')); document.getElementById(id).classList.add('active'); currentScreen = id; }
         
+        // HOTKEYS (Apenas para PC)
         window.addEventListener('keydown', (e) => {
             if (document.activeElement.tagName === 'INPUT') return;
             const key = e.key.toLowerCase();
@@ -163,14 +219,22 @@
         });
 
         function saveSettings() { state.min = parseInt(document.getElementById('c-min').value); state.max = parseInt(document.getElementById('c-max').value); state.inc = parseInt(document.getElementById('c-inc').value); save(); show('s-start'); }
-        function start() { state.p1 = document.getElementById('p1').value || 'ELE'; state.p2 = document.getElementById('p2').value || 'ELA'; save(); initLv(); }
+        
+        function start() { 
+            initAudio(); // Ativa áudio no primeiro clique
+            state.p1 = document.getElementById('p1').value || 'ELE'; 
+            state.p2 = document.getElementById('p2').value || 'ELA'; 
+            save(); initLv(); 
+        }
+        
         function initLv() { state.acts = 0; state.nts = []; update(); draw(); show('s-game'); }
-        function skipLevel() { if(state.lv < 10) { if(confirm("Nível seguinte?")) { state.lv++; save(); show('s-up'); } } }
+        function skipLevel() { if(state.lv < 10) { if(confirm("Próximo nível?")) { state.lv++; save(); show('s-up'); } } }
         function nextLevel() { initLv(); }
         function update() { document.getElementById('l-lv').innerText = `Nível ${state.lv}`; document.getElementById('l-tr').innerText = `Vez de: ${state.tr === 'ele' ? state.p1 : state.p2}`; }
         function draw() { clearInterval(timer); document.getElementById('b-run').style.display = 'block'; document.getElementById('b-rate').style.display = 'none'; document.getElementById('b-skip').style.display = 'block'; document.getElementById('l-tm').innerText = "00:00"; const l = db[state.lv][state.tr]; document.getElementById('l-txt').innerText = l[Math.floor(Math.random() * l.length)]; document.getElementById('l-who').innerText = state.tr === 'ele' ? `${state.p1} EM ${state.p2}` : `${state.p2} EM ${state.p1}`; }
         
         function runTimer() {
+            initAudio(); // Garante áudio ativo
             document.getElementById('b-run').style.display = 'none';
             document.getElementById('b-skip').style.display = 'none';
             let bonus = (state.lv - 1) * state.inc;
@@ -190,11 +254,21 @@
         function skipAction() { if(confirm("Pular?")) { state.tr = (state.tr === 'ele' ? 'ela' : 'ele'); save(); update(); draw(); } }
         function exitToHome() { clearInterval(timer); show('s-start'); }
         function toggleFullScreen() { if (!document.fullscreenElement) document.documentElement.requestFullscreen(); else document.exitFullscreen(); }
-        function showRate() { document.getElementById('l-rate-msg').innerText = `Nota de ${state.tr === 'ele' ? state.p2 : state.p1}:`; show('s-rate'); const g = document.getElementById('notes'); g.innerHTML = ''; for(let i=1; i<=10; i++) { let b = document.createElement('button'); b.className = 'btn-note'; b.innerText = i; b.onclick = () => recordRating(i); g.appendChild(b); } }
+        
+        function showRate() { 
+            document.getElementById('l-rate-msg').innerText = `Nota de ${state.tr === 'ele' ? state.p2 : state.p1}:`; 
+            show('s-rate'); 
+            const g = document.getElementById('notes'); g.innerHTML = ''; 
+            for(let i=1; i<=10; i++) { 
+                let b = document.createElement('button'); b.className = 'btn-note'; b.innerText = i; 
+                b.onclick = () => { initAudio(); recordRating(i); }; 
+                g.appendChild(b); 
+            } 
+        }
+        
         function recordRating(nota) { state.nts.push(nota); state.acts++; const media = state.nts.reduce((a,b)=>a+b)/state.nts.length; state.tr = (state.tr === 'ele' ? 'ela' : 'ele'); if(state.acts >= 4 && media >= 8.5 && state.lv < 10) { state.lv++; save(); show('s-up'); } else { save(); update(); draw(); show('s-game'); } }
-        function reset() { if(confirm("Resetar?")) { localStorage.removeItem('flow_pc_final'); location.reload(); } }
+        function reset() { if(confirm("Resetar?")) { localStorage.removeItem('flow_universal_final'); location.reload(); } }
         window.onload = load;
     </script>
 </body>
-</html>
 </html>
